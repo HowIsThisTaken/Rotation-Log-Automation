@@ -1,7 +1,14 @@
+import java.util.lang.*;
+
 class Log{
 
-    public static void main(String[] args){
-        FileReader file = new FileReader("args[0]");
+    public static void main(String[] args) throws FileNotFoundException
+    {
+        if(args.length() < 1){
+            System.out.println("Invalid Usage");
+            return;
+        }
+        FileReader file = new File("args[0]");
         String str_parsed = parse(file);  
       
     }
