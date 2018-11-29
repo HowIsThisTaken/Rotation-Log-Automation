@@ -1,11 +1,13 @@
-MAINCLASS = Log
-JAVAC = javac -Xlint
+MAINCLASS  = RotationLog
+JAVAC      = javac 
+JAVASRC    = $(wildcard *.java)
+SOURCES    = $(JAVASRC) Makefile README
 CLASSES    = $(patsubst %.java, %.class, $(JAVASRC))
 JARCLASSES = $(patsubst %.class, %*.class, $(CLASSES))
-JARFILE = $(MAINCLASS)
+JARFILE    = $(MAINCLASS) 
 
 all: $(JARFILE)
-
+	
 $(JARFILE): $(CLASSES)
 	echo Main-class: $(MAINCLASS) > Manifest
 	jar cvfm $(JARFILE) Manifest $(JARCLASSES)
@@ -13,7 +15,7 @@ $(JARFILE): $(CLASSES)
 	rm Manifest
 
 %.class: %.java
-	$(JAVA) $<
+	$(JAVAC) $<
 
 clean:
 	rm -f *.class $(JARFILE)
